@@ -1,10 +1,10 @@
-from django.shortcuts import render , get_object_or_404 , reverse
+from django.shortcuts import render , get_object_or_404 , reverse , redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 
 
 from .models import Book , Comment
-from .forms import CommentForm
+from .forms import CommentForm , CreateBookForm
 
 # Create your views here.
 
@@ -14,6 +14,15 @@ def index(request):
     books = Book.objects.all()
     return render(request , 'Book/index_1.html' , context = {'books':books})
 
+
+def create_view_book(request):
+     form = CreateBookForm(request.POST)
+     if form.is_valid():
+         form.save()
+         return redirect('book:index')
+
+
+     return render(request , 'Book/create_view_book.html' , context = {'create_book_form' : form})
 
 
 @login_required
