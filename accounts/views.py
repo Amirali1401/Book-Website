@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 
 from .forms import RegisterForm
@@ -15,6 +15,6 @@ def register(request):
             password = form.cleaned_data['password'],
         )
 
-        form.save()
+        return  redirect('login')
 
     return render(request , 'registration/register.html'  ,context={'form' : form})
