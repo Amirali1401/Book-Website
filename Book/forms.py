@@ -13,6 +13,8 @@ class CommentForm(forms.ModelForm):
 
 
 class CreateBookForm(forms.ModelForm):
-     class Meta:
-         model = Book
-         fields = ('title' , 'content' ,'writer' , 'translator', 'institute' , 'covers' )
+    class Meta:
+        model = Book
+        fields = ('user','title','content' ,'covers')
+
+

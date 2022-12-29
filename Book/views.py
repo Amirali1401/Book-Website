@@ -1,6 +1,7 @@
 from django.shortcuts import render , get_object_or_404 , reverse , redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import Book , Comment
@@ -15,14 +16,12 @@ def index(request):
     return render(request , 'Book/index_1.html' , context = {'books':books})
 
 
-def create_view_book(request):
-     form = CreateBookForm(request.POST)
-     if form.is_valid():
-         form.save()
-         return redirect('book:index')
 
 
-     return render(request , 'Book/create_view_book.html' , context = {'create_book_form' : form})
+
+class CreateViewBook(generic.CreateView ,LoginRequiredMixin ):
+    template_name = 'Book/create_view_book.html'
+    form_class = CreateBookForm
 
 
 @login_required
