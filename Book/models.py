@@ -24,7 +24,7 @@ class  Book(models.Model):
     translator = models.CharField(max_length = 200)
     institute = models.CharField(max_length = 350)
     stars = models.CharField(max_length = 15 , choices=CHOICE_STARS)
-    covers = models.ImageField(upload_to='covers/' , null = True , blank=True)
+    covers = models.ImageField(upload_to='covers/' , null = True)
     date_created = models.DateTimeField(auto_now=True)
     date_modified = models.DateTimeField(auto_now_add=True)
 

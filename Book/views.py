@@ -19,9 +19,16 @@ def index(request):
 
 
 
-class CreateViewBook(generic.CreateView ,LoginRequiredMixin ):
-    template_name = 'Book/create_view_book.html'
-    form_class = CreateBookForm
+class CreateViewBook(LoginRequiredMixin , generic.CreateView ):
+     template_name = 'Book/create_view_book.html'
+     model = Book
+     fields = ('title' , 'content' , 'covers')
+
+     def form_valid(self, form):
+        obj_form = form.save(commit=False)
+        obj_form.user = self.request.user
+        form.save()
+        return super().form_valid(form)
 
 
 @login_required
@@ -30,7 +37,7 @@ def detail_view_book(request , book_id):
      book_comments = book.comments.all()
      form = CommentForm(request.POST)
 
-     return render(request , 'Book/detail_view_books.html' , context={'book':book , 'comments':book_comments , 'comment_form':form})
+     return render(request , 'Book/detail_view_books.html' , context={'books':book , 'comments':book_comments , 'comment_form':form})
 
 
 

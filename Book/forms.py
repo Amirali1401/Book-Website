@@ -15,6 +15,6 @@ class CommentForm(forms.ModelForm):
 class CreateBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('user','title','content' ,'covers')
+        fields = ('title','content' ,'covers')
 
 
