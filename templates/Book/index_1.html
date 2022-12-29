@@ -16,7 +16,12 @@
                             <div class="card-body">
                                 <h3 class="card-title"><a href="{% url 'book:detail_books'  book.id %}">{{ book.title }}</a></h3>
                                 <p class="card-text pt-3">{{ book.content|truncatewords:10 }}</p>
-                                <p class="text-muted">  نویسنده :{{ book.user }}</p>
+{#                                <p class="text-muted">  ایجاد کننده :{{ book.user }}</p>#}
+                                <p class="text-muted">  نویسنده :{{ book.writer }}</p>
+                                <p class="text-muted"> امتیاز :{{ book.stars }} از 5</p>
+{#                                <p class="text-muted">  مترجم :{{ book.translator }}</p>#}
+{#                                <p class="text-muted"> انتشارات :{{ book.institute }}</p>#}
+
                             </div>
                         </div>
                     </div>
